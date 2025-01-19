@@ -34,6 +34,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @q = Item.ransack(params[:q])
+    @items = @q.result
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :image, :category_id, :price).merge(user_id: current_user.id)
