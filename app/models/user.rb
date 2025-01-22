@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true
   has_many :items
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["nickname"]
+  end
 end
